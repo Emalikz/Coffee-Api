@@ -87,7 +87,7 @@ class ProductController extends Controller
             return response([
                 "error"=> false,
                 "message" => "record deleted"
-            ],404);
+            ],200);
         }catch(ModelNotFoundException $e){
             return response([
                 "error"=> true,
