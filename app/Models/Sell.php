@@ -28,4 +28,8 @@ class Sell extends Model
     public function seller(){
         return $this->belongsTo(User::class,"sold_by");
     }
+
+    public function product(){
+        return $this->belongsTo(Product::class);
+    }
 }
