@@ -1,13 +1,16 @@
 <?php
     namespace App\Services;
-    use Tymon\JWTAuth\Exceptions\JWTException;
+
+use Illuminate\Support\Facades\Log;
+use Tymon\JWTAuth\Exceptions\JWTException;
     use Tymon\JWTAuth\Facades\JWTAuth;
 
     class AuthService {
         public function login(mixed $payload){
+            Log::info($payload);
             $token = JWTAuth::attempt($payload);
             if(!$token){
-                throw new JWTException('Credenciales incorrectas', 401);
+                return response()->json(["message"=>'Incorrect username or password'], 401);
             }
 
             $user = JWTAuth::user();
