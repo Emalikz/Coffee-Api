@@ -4,10 +4,7 @@ namespace App\Http\Controllers\V1\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\V1\Auth\LoginRequest;
-use App\Models\User;
 use App\Services\AuthService;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Tymon\JWTAuth\Exceptions\JWTException;
 

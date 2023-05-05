@@ -1,7 +1,7 @@
 <?php
 
+use app\Http\Controllers\Products\ProductController;
 use App\Http\Controllers\V1\Auth\AuthController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +18,6 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('auth')->group(function () {
     Route::post('/login', [AuthController::class, 'login'])->name("auth.login");
 });
-Route::middleware(['jwt.verify'])->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware(['jwt.verify'])->group(function () {
+    Route::apiResource("/products",ProductController::class);
 });
