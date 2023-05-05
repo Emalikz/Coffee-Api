@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\V1\Analytics\ProductController as AnalyticsProductController;
 use App\Http\Controllers\V1\Auth\AuthController;
 use App\Http\Controllers\V1\Products\ProductController;
 use App\Http\Controllers\V1\Sells\SellController;
@@ -22,4 +23,8 @@ Route::prefix('auth')->group(function () {
 Route::middleware(['jwt.verify'])->group(function () {
     Route::apiResource("/products",ProductController::class);
     Route::post("sell",[SellController::class, 'sell']);
+    Route::prefix("/analytics")->group(function(){
+        Route::get("most_sold", [AnalyticsProductController::class,'mostSold']);
+        Route::get("higher_stock", [AnalyticsProductController::class,'higherStock']);
+    });
 });

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\AnalyticsService;
 use App\Services\AuthService;
 use App\Services\ProductService;
 use App\Services\SellService;
@@ -35,6 +36,10 @@ class AppServiceProvider extends ServiceProvider
 
         App::bind(SellService::class,function(Application $application){
             return new SellService(App::make(ProductService::class),App::make(AuthService::class));
+        });
+
+        App::bind(AnalyticsService::class,function(Application $application){
+            return new AnalyticsService(App::make(ProductService::class));
         });
     }
 }
