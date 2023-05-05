@@ -39,9 +39,21 @@ use App\Models\Product;
             return new ProductCollection(Product::all());
         }
 
+        /**
+         * Update product from entry data
+         * @return \App\Models\Product
+         */
         public function update(Product $product, mixed $newData):Product{
             $newData['modified_by'] = $this->authService->session_id();
             $product->update($newData);
             return $product;
+        }
+
+        /**
+         * Delete a product from database
+         * @return void
+         */
+        public function delete(Product $product){
+            return $product->delete();
         }
     }
