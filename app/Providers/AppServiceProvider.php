@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Services\AuthService;
 use App\Services\ProductService;
+use App\Services\SellService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
@@ -30,6 +31,10 @@ class AppServiceProvider extends ServiceProvider
 
         App::bind(ProductService::class,function(Application $application){
             return new ProductService(App::make(AuthService::class));
+        });
+
+        App::bind(SellService::class,function(Application $application){
+            return new SellService(App::make(ProductService::class),App::make(AuthService::class));
         });
     }
 }

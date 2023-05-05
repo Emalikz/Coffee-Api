@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\V1\Auth\AuthController;
 use App\Http\Controllers\V1\Products\ProductController;
+use App\Http\Controllers\V1\Sells\SellController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,4 +21,5 @@ Route::prefix('auth')->group(function () {
 });
 Route::middleware(['jwt.verify'])->group(function () {
     Route::apiResource("/products",ProductController::class);
+    Route::post("sell",[SellController::class, 'sell']);
 });

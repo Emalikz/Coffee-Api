@@ -31,4 +31,8 @@ class Product extends Model
     public function deletes(){
         return $this->belongsTo(User::class,"deleted_by");
     }
+
+    public function sells(){
+        return $this->hasMany(Sell::class);
+    }
 }

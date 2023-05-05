@@ -33,7 +33,7 @@ class ProductController extends Controller
 
             return response()->json([
                 "error" => false,
-                "message" => "Product save correctly"
+                "message" => "Product save successfully"
             ]);
         }catch(Exception $e){
             return response()->json([
