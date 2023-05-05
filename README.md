@@ -71,3 +71,10 @@ After the choice, you must run:
 | Docker | Local |
 | :-------- | :------- |
 |`./vendor/bin/sail artisan migrate --seed` | `php artisan migrate --seed` |
+
+
+## Visit
+`APP_URL`/request-docs for see endpoints specifications
+
+## See
+postman-collection.json to import all tests for api in postman.
