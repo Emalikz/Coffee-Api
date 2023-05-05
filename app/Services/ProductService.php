@@ -2,8 +2,8 @@
 
     namespace App\Services;
 
+use App\Http\Resources\ProductCollection;
 use App\Models\Product;
-use Illuminate\Support\Facades\Log;
 
     class ProductService {
 
@@ -20,9 +20,22 @@ use Illuminate\Support\Facades\Log;
         }
 
 
+        /**
+         * Store a product in database
+         * @return App\Models\Product;
+         */
         public function store(mixed $product){
             $creator = $this->authService->session_id();
             $product['created_by'] = $creator;
             return Product::create($product);
+        }
+
+
+        /**
+         * Retrieves a collection of products
+         * @return App\Http\Resources\ProductCollection
+         */
+        public function list(){
+            return new ProductCollection(Product::all());
         }
     }
