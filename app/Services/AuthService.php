@@ -17,4 +17,8 @@
                 "user" => $user
             ];
         }
+
+        public function session_id(){
+            return JWTAuth::user()->id;
+        }
     }

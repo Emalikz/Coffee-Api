@@ -1,7 +1,7 @@
 <?php
 
-use app\Http\Controllers\Products\ProductController;
 use App\Http\Controllers\V1\Auth\AuthController;
+use App\Http\Controllers\V1\Products\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
