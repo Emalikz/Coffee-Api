@@ -4,10 +4,13 @@ namespace App\Http\Controllers\V1\Products;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\V1\Products\ProductCreationRequest;
+use App\Http\Requests\V1\Products\ProductUpdatingRequest;
 use App\Models\Product;
 use App\Services\ProductService;
 use Exception;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ProductController extends Controller
 {
@@ -45,17 +48,32 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Product $product)
+    public function show($product)
     {
-        //
+        try{
+            $this->productService->find($product);
+        }catch(ModelNotFoundException $e){
+            dd($e);
+        }
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product)
+    public function update(ProductUpdatingRequest $data,$product)
     {
-        //
+        try{
+            $product = $this->productService->find($product);
+            $newProduct = $this->productService->update($product,$data->all());
+        }catch(ModelNotFoundException $e){
+
+            return response([
+                "error"=> true,
+                "message" => "record not found"
+            ],404);
+        }catch(Exception $e){
+            dd($e);
+        }
     }
 
     /**

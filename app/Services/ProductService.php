@@ -13,10 +13,10 @@ use App\Models\Product;
         /**
          * Find Product by id from database
          * @param integer $id
-         * @return App\Models\Product;
+         * @return \App\Models\Product
          */
-        public function find($id){
-            return Product::find($id);
+        public function find($id):Product{
+            return Product::findOrFail($id);
         }
 
 
@@ -37,5 +37,11 @@ use App\Models\Product;
          */
         public function list(){
             return new ProductCollection(Product::all());
+        }
+
+        public function update(Product $product, mixed $newData):Product{
+            $newData['modified_by'] = $this->authService->session_id();
+            $product->update($newData);
+            return $product;
         }
     }

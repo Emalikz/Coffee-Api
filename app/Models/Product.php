@@ -15,11 +15,20 @@ class Product extends Model
         "price",
         "weight",
         "stock",
-        "created_by"
+        "created_by",
+        "deleted_by"
     ];
 
 
     public function creator(){
         return $this->belongsTo(User::class,"created_by");
+    }
+
+    public function modifier(){
+        return $this->belongsTo(User::class,"modified_by");
+    }
+
+    public function deletes(){
+        return $this->belongsTo(User::class,"deleted_by");
     }
 }
