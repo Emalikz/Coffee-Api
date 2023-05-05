@@ -28,8 +28,10 @@ class SellController extends Controller
         }catch(ProductOutOfStockException $e){
             return response()->json([
                 "error" => true,
-                "message" => "Product Out Of Stock"
-            ]);
+                "errors" => [
+                    "amount" => ["Product Out Of Stock"]
+                ]
+            ],422);
         }
     }
 }
